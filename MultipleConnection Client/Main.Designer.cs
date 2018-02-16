@@ -114,7 +114,7 @@
             // LATandLON
             // 
             this.LATandLON.Interval = 1000;
-            //this.LATandLON.Tick += new System.EventHandler(this.LATandLON_Tick);
+            this.LATandLON.Tick += new System.EventHandler(this.LATandLON_Tick);
             // 
             // Main
             // 

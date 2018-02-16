@@ -13,7 +13,7 @@ namespace MultipleConnection_Client
         static public Offset<long> latitude = new Offset<long>(0x0560);
     }
 
-    class FSUIPCGets
+    public class FSUIPCGets
     {
         /// <summary>
         /// Offset for Lon features

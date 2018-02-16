@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Net;
 using System.Net.Sockets;
+using FSUIPC;
 
 namespace MultipleConnection_Client
 {
@@ -26,7 +27,8 @@ namespace MultipleConnection_Client
         {
             sck.Connect("127.0.0.1", 8);
             MessageBox.Show("Connected");
-
+            FSUIPCConnection.Open();            
+            LATandLON.Start();
         }
 
         private void btnSend_Click(object sender, EventArgs e)
@@ -41,10 +43,17 @@ namespace MultipleConnection_Client
 
         private void btnClose_Click(object sender, EventArgs e)
         {
+            FSUIPCConnection.Close();
             sck.Close();
             sck.Dispose();
             Close();
         }
-
+       
+        private void LATandLON_Tick(object sender, EventArgs e)
+        {            
+            FSUIPCGets.GetCurrent();
+            txtLAT.Text = FSUIPCGets.GetCurrent().Latitude.ToString();
+            txtLON.Text = FSUIPCGets.GetCurrent().Longitude.ToString();
+        }
     }
 }
