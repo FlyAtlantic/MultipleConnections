@@ -13,8 +13,14 @@ using FSUIPC;
 
 namespace MultipleConnection_Client
 {
+    
     public partial class Main : Form
     {
+        public string lat = null;
+        public string lon = null;
+        public bool terminate = false;
+        public bool terminated = false;
+
         Socket sck;
 
         public Main()
@@ -33,7 +39,12 @@ namespace MultipleConnection_Client
 
         private void btnSend_Click(object sender, EventArgs e)
         {
-            int s = sck.Send(Encoding.Default.GetBytes(txtMsg.Text));
+            string[] data = new string[3];
+            data[0] = txtMsg.Text;
+            data[1] = lat;
+            data[2] = lon;
+
+            int s = sck.Send(Encoding.Default.GetBytes(data[0] + '/'  + data[1] + '/' + data[2]));
 
             if(s > 0)
             {
@@ -43,6 +54,9 @@ namespace MultipleConnection_Client
 
         private void btnClose_Click(object sender, EventArgs e)
         {
+
+           // terminate = true;
+           // while (terminated == false) { }
             FSUIPCConnection.Close();
             sck.Close();
             sck.Dispose();
@@ -50,10 +64,22 @@ namespace MultipleConnection_Client
         }
        
         private void LATandLON_Tick(object sender, EventArgs e)
-        {            
-            FSUIPCGets.GetCurrent();
-            txtLAT.Text = FSUIPCGets.GetCurrent().Latitude.ToString();
-            txtLON.Text = FSUIPCGets.GetCurrent().Longitude.ToString();
+        {
+
+           // while (terminate == false)
+           // {
+                FSUIPCGets.GetCurrent();
+               lat = txtLAT.Text = FSUIPCGets.GetCurrent().Latitude.ToString();
+               lon =  txtLON.Text = FSUIPCGets.GetCurrent().Longitude.ToString();
+            // }
+            // terminated = true;
+
+            string[] data = new string[3];
+            data[0] = txtMsg.Text;
+            data[1] = lat;
+            data[2] = lon;
+
+            int s = sck.Send(Encoding.Default.GetBytes(data[0] + '/' + data[1] + '/' + data[2]));
         }
     }
 }

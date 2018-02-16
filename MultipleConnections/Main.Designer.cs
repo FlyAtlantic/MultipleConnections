@@ -33,6 +33,8 @@
             this.ID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.LastMsg = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.LastReceivePoint = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.LAT = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.LON = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // lstClients
@@ -41,6 +43,8 @@
             this.EndPoint,
             this.ID,
             this.LastMsg,
+            this.LAT,
+            this.LON,
             this.LastReceivePoint});
             this.lstClients.Location = new System.Drawing.Point(12, 12);
             this.lstClients.Name = "lstClients";
@@ -69,6 +73,14 @@
             this.LastReceivePoint.Text = "LastReceivePoint";
             this.LastReceivePoint.Width = 191;
             // 
+            // LAT
+            // 
+            this.LAT.Text = "Latitude";
+            // 
+            // LON
+            // 
+            this.LON.Text = "Longitude";
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -88,5 +100,7 @@
         private System.Windows.Forms.ColumnHeader ID;
         private System.Windows.Forms.ColumnHeader LastMsg;
         private System.Windows.Forms.ColumnHeader LastReceivePoint;
+        private System.Windows.Forms.ColumnHeader LAT;
+        private System.Windows.Forms.ColumnHeader LON;
     }
 }

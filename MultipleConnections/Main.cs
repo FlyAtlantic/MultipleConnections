@@ -40,6 +40,8 @@ namespace MultipleConnections
                 i.SubItems.Add(client.ID);
                 i.SubItems.Add("XX");
                 i.SubItems.Add("XX");
+                i.SubItems.Add("XX");
+                i.SubItems.Add("XX");
                 i.Tag = client;
                 lstClients.Items.Add(i);
 
@@ -56,8 +58,12 @@ namespace MultipleConnections
 
                     if (client.ID == sender.ID)
                     {
-                        lstClients.Items[i].SubItems[2].Text = Encoding.Default.GetString(data);
-                        lstClients.Items[i].SubItems[3].Text = DateTime.Now.ToString();
+
+                        string[] newData = Encoding.Default.GetString(data).Split('/');
+                        lstClients.Items[i].SubItems[2].Text = newData[0];
+                        lstClients.Items[i].SubItems[3].Text = newData[1];
+                        lstClients.Items[i].SubItems[4].Text = newData[2];
+                        lstClients.Items[i].SubItems[5].Text = DateTime.Now.ToString();
                         break;
                     }
                 }
