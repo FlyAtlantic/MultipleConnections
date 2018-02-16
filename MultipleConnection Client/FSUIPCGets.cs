@@ -11,6 +11,10 @@ namespace MultipleConnection_Client
     {
         static public Offset<long> longitude = new Offset<long>(0x0568);
         static public Offset<long> latitude = new Offset<long>(0x0560);
+        static public Offset<Double> compass = new Offset<double>(0x02CC);
+        static public Offset<int> groundspeed = new Offset<int>(0x02B4);
+        static public Offset<Double> altitude = new Offset<Double>(0x6020);
+
     }
 
     public class FSUIPCGets
@@ -23,6 +27,18 @@ namespace MultipleConnection_Client
         /// Offset for Lat features
         /// </summary>
         public double Latitude;
+        /// <summary>
+        /// Offset for Compass
+        /// </summary>
+        public Double Compass;
+        /// <summary>
+        /// GroundSpeed
+        /// </summary>
+        public double GroundSpeed;
+        /// <summary>
+        /// Altitude? MSL AGL ... ?, in ft most likely
+        /// </summary>
+        public double Altitude;
 
         public static FSUIPCGets GetCurrent()
         {
@@ -42,6 +58,9 @@ namespace MultipleConnection_Client
             // capture values
             result.Latitude = FSUIPCOffsets.latitude.Value * (90.0 / (10001750.0 * 65536.0 * 65536.0));
             result.Longitude = FSUIPCOffsets.longitude.Value * (360.0 / (65536.0 * 65536.0 * 65536.0 * 65536.0));
+            result.Compass = FSUIPCOffsets.compass.Value;
+            result.GroundSpeed = (FSUIPCOffsets.groundspeed.Value / 65536) * 1.94384449;
+            result.Altitude = (FSUIPCOffsets.altitude.Value * 3.2808399);
 
             return result;
         }

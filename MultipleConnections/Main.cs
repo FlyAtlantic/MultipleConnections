@@ -42,6 +42,9 @@ namespace MultipleConnections
                 i.SubItems.Add("XX");
                 i.SubItems.Add("XX");
                 i.SubItems.Add("XX");
+                i.SubItems.Add("XX");
+                i.SubItems.Add("XX");
+                i.SubItems.Add("XX");
                 i.Tag = client;
                 lstClients.Items.Add(i);
 
@@ -63,7 +66,10 @@ namespace MultipleConnections
                         lstClients.Items[i].SubItems[2].Text = newData[0];
                         lstClients.Items[i].SubItems[3].Text = newData[1];
                         lstClients.Items[i].SubItems[4].Text = newData[2];
-                        lstClients.Items[i].SubItems[5].Text = DateTime.Now.ToString();
+                        lstClients.Items[i].SubItems[5].Text = newData[3];
+                        lstClients.Items[i].SubItems[6].Text = newData[4];
+                        lstClients.Items[i].SubItems[7].Text = newData[5];
+                        lstClients.Items[i].SubItems[8].Text = DateTime.Now.ToString();
                         break;
                     }
                 }

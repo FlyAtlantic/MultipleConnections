@@ -32,9 +32,12 @@
             this.EndPoint = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.LastMsg = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.LastReceivePoint = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.LAT = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.LON = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.HDG = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.LastReceivePoint = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.ALT = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.GS = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // lstClients
@@ -45,6 +48,9 @@
             this.LastMsg,
             this.LAT,
             this.LON,
+            this.HDG,
+            this.ALT,
+            this.GS,
             this.LastReceivePoint});
             this.lstClients.Location = new System.Drawing.Point(12, 12);
             this.lstClients.Name = "lstClients";
@@ -68,11 +74,6 @@
             this.LastMsg.Text = "LastMsg";
             this.LastMsg.Width = 219;
             // 
-            // LastReceivePoint
-            // 
-            this.LastReceivePoint.Text = "LastReceivePoint";
-            this.LastReceivePoint.Width = 191;
-            // 
             // LAT
             // 
             this.LAT.Text = "Latitude";
@@ -80,6 +81,23 @@
             // LON
             // 
             this.LON.Text = "Longitude";
+            // 
+            // HDG
+            // 
+            this.HDG.Text = "HDG";
+            // 
+            // LastReceivePoint
+            // 
+            this.LastReceivePoint.Text = "LastReceivePoint";
+            this.LastReceivePoint.Width = 191;
+            // 
+            // ALT
+            // 
+            this.ALT.Text = "ALT";
+            // 
+            // GS
+            // 
+            this.GS.Text = "G/S";
             // 
             // Main
             // 
@@ -102,5 +120,8 @@
         private System.Windows.Forms.ColumnHeader LastReceivePoint;
         private System.Windows.Forms.ColumnHeader LAT;
         private System.Windows.Forms.ColumnHeader LON;
+        private System.Windows.Forms.ColumnHeader HDG;
+        private System.Windows.Forms.ColumnHeader ALT;
+        private System.Windows.Forms.ColumnHeader GS;
     }
 }
