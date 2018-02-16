@@ -14,6 +14,7 @@ namespace MultipleConnection_Client
         static public Offset<Double> compass = new Offset<double>(0x02CC);
         static public Offset<int> groundspeed = new Offset<int>(0x02B4);
         static public Offset<Double> altitude = new Offset<Double>(0x6020);
+        static public Offset<byte[]> AiTfraffic = new Offset<byte[]>(0xF000, 4096);
 
     }
 
@@ -39,6 +40,10 @@ namespace MultipleConnection_Client
         /// Altitude? MSL AGL ... ?, in ft most likely
         /// </summary>
         public double Altitude;
+        /// <summary>
+        /// SimTime
+        /// </summary>
+        public byte[] AiTfraffic;
 
         public static FSUIPCGets GetCurrent()
         {
@@ -61,6 +66,7 @@ namespace MultipleConnection_Client
             result.Compass = FSUIPCOffsets.compass.Value;
             result.GroundSpeed = (FSUIPCOffsets.groundspeed.Value / 65536) * 1.94384449;
             result.Altitude = (FSUIPCOffsets.altitude.Value * 3.2808399);
+            result.AiTfraffic = FSUIPCOffsets.AiTfraffic.Value;
 
             return result;
         }

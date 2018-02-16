@@ -47,7 +47,6 @@ namespace MultipleConnections
                 i.SubItems.Add("XX");
                 i.Tag = client;
                 lstClients.Items.Add(i);
-
             });
         }
 

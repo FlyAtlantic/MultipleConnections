@@ -16,11 +16,14 @@ namespace MultipleConnection_Client
     
     public partial class Main : Form
     {
+
         public string lat = null;
         public string lon = null;
         public string hdg = null;
         public string alt = null;
         public string gs = null;
+        FsLatitude LAT;
+        FsLongitude LON;
 
         public bool terminate = false;
         public bool terminated = false;
@@ -55,6 +58,19 @@ namespace MultipleConnection_Client
             //{
             //    MessageBox.Show("Data Sent");
             //}
+
+            LAT = new FsLatitude(FSUIPCGets.GetCurrent().Latitude);
+            LON = new FsLongitude(FSUIPCGets.GetCurrent().Longitude);
+            double fshdg = Convert.ToInt64(hdg);
+            double fsalt = Convert.ToInt64(1000); ;
+            short fsgs = Convert.ToInt16(gs);
+            short fsvs = Convert.ToInt16(0); ;
+            short com1 = Convert.ToInt16(122.80);
+
+
+        FSUIPCConnection.AITrafficServices.AddTCASTarget(0, "FlyAtlantic", AITrafficStatus.FilingFlightPlan, LAT, LON, fsalt, fshdg, fsgs, fsvs, com1);
+        FSUIPCConnection.AITrafficServices.SendTCASTargets();
+        
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -72,11 +88,15 @@ namespace MultipleConnection_Client
         {
 
             FSUIPCGets.GetCurrent();
+            
             lat = txtLAT.Text = FSUIPCGets.GetCurrent().Latitude.ToString();
             lon =  txtLON.Text = FSUIPCGets.GetCurrent().Longitude.ToString();
             hdg = FSUIPCGets.GetCurrent().Compass.ToString("0");
             alt = FSUIPCGets.GetCurrent().Altitude.ToString("0");
             gs = FSUIPCGets.GetCurrent().GroundSpeed.ToString("0");
+            FSUIPCConnection.AITrafficServices.RefreshAITrafficInformation();
+            var aiTfc = FSUIPCConnection.AITrafficServices.AllTraffic;
+            Console.WriteLine(aiTfc);
 
             string[] data = new string[6];
             data[0] = txtMsg.Text;
