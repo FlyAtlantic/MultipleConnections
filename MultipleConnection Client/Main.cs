@@ -45,27 +45,6 @@ namespace MultipleConnection_Client
             LATandLON.Start();
         }
 
-        public struct TCAS
-        {
-            public UInt32 id; // 0 = empty, otherwise this is an FS-generated ID.
-                              // (Do not use this for anything other than checking if the slot is empty or used—it may be reused
-                              // for other things at a later date).
-            public float lat; // 32-bit float, in degrees, –ve = South
-            public float lon; // 32-bit float, in degrees, –ve = West
-            public float alt; // 32-bit float, in feet
-            public UInt16 hdg; // 16-bits. Heading. Usual 360 degrees == 65536 format.
-                               // Note that this is degrees TRUE, not MAG
-            public UInt16 gs; // 16-bits. Knots Ground Speed
-            public short vs; // 16-bits, signed feet per minute V/S
-            public string idATC; // Zero terminated string identifying the aircraft. By default this is:
-                                 // Airline & Flight Number, or Tail number
-                                 // For Tail number, if more than 14 chars you get the *LAST* 14
-                                 // Airline name is truncated to allow whole flight number to be included
-            public byte bState; // Zero in FS2002, a status indication in FS2004—see list below.
-            public UInt16 com1; // the COM1 frequency set in the AI aircraft’s radio. (0Xaabb as in 1aa.bb)
-                                // NOTE that since FSUIPC 3.60, in FS2004 this is set to           
-        }
-
         private void btnSend_Click(object sender, EventArgs e)
         {
             //string[] data = new string[4];
@@ -94,31 +73,7 @@ namespace MultipleConnection_Client
             FSUIPCConnection.AITrafficServices.SendTCASTargets();
 
             FSUIPCConnection.AITrafficServices.RefreshAITrafficInformation(true, true);
-
-            TCAS tcas = new TCAS();
-            tcas.id = Convert.ToUInt32(0);
-            tcas.lat = Convert.ToSingle(lat);
-            tcas.lon = Convert.ToSingle(lon);
-            tcas.alt = Convert.ToSingle(1000);
-            tcas.hdg = Convert.ToUInt16(fshdg);
-            tcas.gs = Convert.ToUInt16(0);
-            tcas.idATC = "150000000000000";
-            tcas.bState = Convert.ToByte(0x8C);
-            tcas.com1 = Convert.ToUInt16(112.80);
-            byte[] tcasToBytes = tcasGetBytes(tcas);
-            FSUIPCGets.SetValue(FSUIPCOffsets.AiTfrafficInsert, tcasToBytes);          
-        }
-
-        public byte[] tcasGetBytes(TCAS str)
-        {
-            int size = Marshal.SizeOf(str);
-            byte[] arr = new byte[size];
-
-            IntPtr ptr = Marshal.AllocHGlobal(size);
-            Marshal.StructureToPtr(str, ptr, true);
-            Marshal.Copy(ptr, arr, 0, size);
-            Marshal.FreeHGlobal(ptr);
-            return arr;
+   
         }
 
         private void btnClose_Click(object sender, EventArgs e)
