@@ -18,13 +18,17 @@ namespace MultipleConnection_Client
     public partial class Main : Form
     {
 
+        public static string ServerName;
+        public static string ServerIP;
+        public static string ServerPort;
+
         public string lat = null;
         public string lon = null;
         public string hdg = null;
         public string alt = null;
         public string gs = null;
-        FsLatitude LAT;
-        FsLongitude LON;
+
+        FlightPlanFrm f = new FlightPlanFrm();
 
         public bool terminate = false;
         public bool terminated = false;
@@ -35,19 +39,71 @@ namespace MultipleConnection_Client
         {
             InitializeComponent();
             sck = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-           
+
+            cboxServer.Text = "Beta";
+
         }
 
         private void btnConnect_Click(object sender, EventArgs e)
         {
-            sck.Connect("95.94.130.22", 6702);
-            MessageBox.Show("Connected");
-            FSUIPCConnection.Open();
-            LATandLON.Start();
+            switch (btnConnect.Text)
+            {
 
-            btnConnect.Enabled = false;
-            txtCallsign.Enabled = false;
-            txtAircraft.Enabled = false;
+                case "Connect":                                     
+
+                    switch (cboxServer.Text)
+                    {
+                        case "Beta":
+                            sck.Connect("95.94.130.22", 6702);
+
+                            FSUIPCConnection.Open();
+
+                            LATandLON.Start();
+
+                            txtCallsign.Enabled = false;
+                            txtAircraft.Enabled = false;
+                            txtChatText.Enabled = true;
+                            btnChatSend.Enabled = true;
+
+                            lblStatus.Text = "Connected";
+                            lblStatus.ForeColor = Color.ForestGreen;
+                            txtChat.Text = "You are now connect on network server!";
+
+                            btnConnect.Text = "Flight Plan";
+                            btnClose.Enabled = true;
+                            break;
+
+                        default:
+                            LATandLON.Stop();
+                            FSUIPCConnection.Close();
+                            sck.Close();
+                            sck.Dispose();
+
+                            txtCallsign.Enabled = true;
+                            txtAircraft.Enabled = true;
+                            txtChatText.Enabled = false;
+                            btnChatSend.Enabled = false;
+                            btnClose.Enabled = false;
+                            btnConnect.Enabled = false;
+
+                            lblStatus.Text = "Server Error";
+                            lblStatus.ForeColor = Color.DarkRed;
+
+                            btnConnect.Text = "Connect";
+                            txtChat.Text = txtChat.Text + "\r\nSelect one server!";
+                            break;
+                    }
+
+                    break;
+
+                case "Flight Plan":
+                    f.Show();
+                    break;
+
+                default:
+                    break;
+            }
+
         }
 
         private void btnSend_Click(object sender, EventArgs e)
@@ -71,12 +127,27 @@ namespace MultipleConnection_Client
         private void btnClose_Click(object sender, EventArgs e)
         {
 
-           // terminate = true;
-           // while (terminated == false) { }
+            // terminate = true;
+            // while (terminated == false) { }
+            LATandLON.Stop();
             FSUIPCConnection.Close();
             sck.Close();
             sck.Dispose();
-            Close();
+
+            txtCallsign.Enabled = true;
+            txtAircraft.Enabled = true;
+            txtChatText.Enabled = false;
+            btnChatSend.Enabled = false;
+            btnClose.Enabled = false;
+            btnConnect.Enabled = false;
+
+            lblStatus.Text = "Disconnected";
+            lblStatus.ForeColor = Color.DarkRed;
+
+            btnConnect.Text = "Connect";
+            txtChat.Text = txtChat.Text + "\r\nYou are now disconnected on network server!";
+
+            
         }
        
         private void LATandLON_Tick(object sender, EventArgs e)
@@ -109,18 +180,20 @@ namespace MultipleConnection_Client
 
         private void txtCallsign_TextChanged(object sender, EventArgs e)
         {
-            if (txtCallsign.Text != "" && txtAircraft.Text != "" && txtAircraft.TextLength >= 4)
+            if ((txtCallsign.Text != "" && txtAircraft.Text != "") && txtAircraft.TextLength >= 4)
             {
                 btnConnect.Enabled = true;
             }
+            else { btnConnect.Enabled = false; }
         }
 
         private void txtAircraft_TextChanged(object sender, EventArgs e)
         {
-            if (txtCallsign.Text != "" && txtAircraft.Text != "" && txtAircraft.TextLength >= 4)
+            if ((txtCallsign.Text != "" && txtAircraft.Text != "") && txtAircraft.TextLength >= 4)
             {
                 btnConnect.Enabled = true;
             }
+            else { btnConnect.Enabled = false; }
         }
     }
 }

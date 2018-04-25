@@ -38,6 +38,7 @@ namespace MultipleConnections
                 ListViewItem i = new ListViewItem();
                 i.Text = client.EndPoint.ToString();
                 i.SubItems.Add(client.ID);
+                i.SubItems.Add("Connection");
                 i.SubItems.Add("XX");
                 i.SubItems.Add("XX");
                 i.SubItems.Add("XX");
@@ -50,6 +51,7 @@ namespace MultipleConnections
                 i.Tag = client;
                 lstClients.Items.Add(i);
             });
+           
         }
 
         private void client_Received(Client sender, byte[] data)
@@ -64,19 +66,19 @@ namespace MultipleConnections
                     {
 
                         string[] newData = Encoding.Default.GetString(data).Split('/');
-                        lstClients.Items[i].SubItems[2].Text = newData[0];
-                        lstClients.Items[i].SubItems[3].Text = newData[1];
-                        lstClients.Items[i].SubItems[4].Text = newData[2];
-                        lstClients.Items[i].SubItems[5].Text = newData[3];
-                        lstClients.Items[i].SubItems[6].Text = newData[4];
-                        lstClients.Items[i].SubItems[7].Text = newData[5];
-                        lstClients.Items[i].SubItems[8].Text = newData[6];
-                        lstClients.Items[i].SubItems[9].Text = newData[7];
-                        lstClients.Items[i].SubItems[10].Text = DateTime.Now.ToString();
+                        lstClients.Items[i].SubItems[3].Text = newData[0];
+                        lstClients.Items[i].SubItems[4].Text = newData[1];
+                        lstClients.Items[i].SubItems[5].Text = newData[2];
+                        lstClients.Items[i].SubItems[6].Text = newData[3];
+                        lstClients.Items[i].SubItems[7].Text = newData[4];
+                        lstClients.Items[i].SubItems[8].Text = newData[5];
+                        lstClients.Items[i].SubItems[9].Text = newData[6];
+                        lstClients.Items[i].SubItems[10].Text = newData[7];
+                        lstClients.Items[i].SubItems[11].Text = DateTime.Now.ToString();
                         break;
                     }
                 }
-            });
+            });           
         }
 
         private void client_Disconnected(Client sender)

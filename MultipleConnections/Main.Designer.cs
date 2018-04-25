@@ -33,21 +33,27 @@
             this.EndPoint = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.LastMsg = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Aircraft = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.LAT = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.LON = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.HDG = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ALT = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.GS = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.LastReceivePoint = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Aircraft = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Type = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             Callsign = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
+            // 
+            // Callsign
+            // 
+            Callsign.Text = "Callsign";
             // 
             // lstClients
             // 
             this.lstClients.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.EndPoint,
             this.ID,
+            this.Type,
             this.LastMsg,
             Callsign,
             this.Aircraft,
@@ -79,6 +85,10 @@
             this.LastMsg.Text = "LastMsg";
             this.LastMsg.Width = 219;
             // 
+            // Aircraft
+            // 
+            this.Aircraft.Text = "Aircraft";
+            // 
             // LAT
             // 
             this.LAT.Text = "Latitude";
@@ -104,13 +114,9 @@
             this.LastReceivePoint.Text = "LastReceivePoint";
             this.LastReceivePoint.Width = 191;
             // 
-            // Callsign
+            // Type
             // 
-            Callsign.Text = "Callsign";
-            // 
-            // Aircraft
-            // 
-            this.Aircraft.Text = "Aircraft";
+            this.Type.Text = "Type";
             // 
             // Main
             // 
@@ -137,5 +143,6 @@
         private System.Windows.Forms.ColumnHeader ALT;
         private System.Windows.Forms.ColumnHeader GS;
         private System.Windows.Forms.ColumnHeader Aircraft;
+        private System.Windows.Forms.ColumnHeader Type;
     }
 }

@@ -43,6 +43,12 @@
             this.txtCallsign = new System.Windows.Forms.TextBox();
             this.lblCallsign = new System.Windows.Forms.Label();
             this.txtChat = new System.Windows.Forms.TextBox();
+            this.txtChatText = new System.Windows.Forms.TextBox();
+            this.btnChatSend = new System.Windows.Forms.Button();
+            this.lblStatus = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cboxServer = new System.Windows.Forms.ComboBox();
+            this.lblServer = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnConnect
@@ -75,11 +81,12 @@
             // 
             // btnClose
             // 
+            this.btnClose.Enabled = false;
             this.btnClose.Location = new System.Drawing.Point(12, 96);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(100, 23);
             this.btnClose.TabIndex = 10;
-            this.btnClose.Text = "Close";
+            this.btnClose.Text = "Disconnect";
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
@@ -125,7 +132,7 @@
             // lblAircraft
             // 
             this.lblAircraft.AutoSize = true;
-            this.lblAircraft.Location = new System.Drawing.Point(172, 54);
+            this.lblAircraft.Location = new System.Drawing.Point(171, 80);
             this.lblAircraft.Name = "lblAircraft";
             this.lblAircraft.Size = new System.Drawing.Size(40, 13);
             this.lblAircraft.TabIndex = 8;
@@ -133,7 +140,7 @@
             // 
             // txtAircraft
             // 
-            this.txtAircraft.Location = new System.Drawing.Point(143, 70);
+            this.txtAircraft.Location = new System.Drawing.Point(142, 96);
             this.txtAircraft.Name = "txtAircraft";
             this.txtAircraft.Size = new System.Drawing.Size(100, 20);
             this.txtAircraft.TabIndex = 1;
@@ -141,7 +148,7 @@
             // 
             // txtCallsign
             // 
-            this.txtCallsign.Location = new System.Drawing.Point(143, 31);
+            this.txtCallsign.Location = new System.Drawing.Point(142, 57);
             this.txtCallsign.Name = "txtCallsign";
             this.txtCallsign.Size = new System.Drawing.Size(100, 20);
             this.txtCallsign.TabIndex = 0;
@@ -150,7 +157,7 @@
             // lblCallsign
             // 
             this.lblCallsign.AutoSize = true;
-            this.lblCallsign.Location = new System.Drawing.Point(172, 15);
+            this.lblCallsign.Location = new System.Drawing.Point(171, 41);
             this.lblCallsign.Name = "lblCallsign";
             this.lblCallsign.Size = new System.Drawing.Size(43, 13);
             this.lblCallsign.TabIndex = 10;
@@ -158,17 +165,84 @@
             // 
             // txtChat
             // 
-            this.txtChat.Location = new System.Drawing.Point(143, 99);
+            this.txtChat.Location = new System.Drawing.Point(266, 15);
             this.txtChat.Multiline = true;
             this.txtChat.Name = "txtChat";
-            this.txtChat.Size = new System.Drawing.Size(100, 105);
+            this.txtChat.ReadOnly = true;
+            this.txtChat.Size = new System.Drawing.Size(324, 120);
             this.txtChat.TabIndex = 12;
+            // 
+            // txtChatText
+            // 
+            this.txtChatText.Enabled = false;
+            this.txtChatText.Location = new System.Drawing.Point(266, 152);
+            this.txtChatText.Multiline = true;
+            this.txtChatText.Name = "txtChatText";
+            this.txtChatText.Size = new System.Drawing.Size(324, 23);
+            this.txtChatText.TabIndex = 13;
+            // 
+            // btnChatSend
+            // 
+            this.btnChatSend.Enabled = false;
+            this.btnChatSend.Location = new System.Drawing.Point(490, 181);
+            this.btnChatSend.Name = "btnChatSend";
+            this.btnChatSend.Size = new System.Drawing.Size(100, 23);
+            this.btnChatSend.TabIndex = 14;
+            this.btnChatSend.Text = "Send";
+            this.btnChatSend.UseVisualStyleBackColor = true;
+            // 
+            // lblStatus
+            // 
+            this.lblStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblStatus.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStatus.ForeColor = System.Drawing.Color.DarkRed;
+            this.lblStatus.Location = new System.Drawing.Point(142, 12);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(100, 23);
+            this.lblStatus.TabIndex = 15;
+            this.lblStatus.Text = "Disconnected";
+            this.lblStatus.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(0, 0);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 21);
+            this.comboBox1.TabIndex = 16;
+            // 
+            // cboxServer
+            // 
+            this.cboxServer.Enabled = false;
+            this.cboxServer.FormattingEnabled = true;
+            this.cboxServer.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.cboxServer.Location = new System.Drawing.Point(139, 139);
+            this.cboxServer.Name = "cboxServer";
+            this.cboxServer.Size = new System.Drawing.Size(103, 21);
+            this.cboxServer.TabIndex = 17;
+            // 
+            // lblServer
+            // 
+            this.lblServer.AutoSize = true;
+            this.lblServer.Location = new System.Drawing.Point(171, 120);
+            this.lblServer.Name = "lblServer";
+            this.lblServer.Size = new System.Drawing.Size(38, 13);
+            this.lblServer.TabIndex = 18;
+            this.lblServer.Text = "Server";
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(255, 216);
+            this.ClientSize = new System.Drawing.Size(602, 216);
+            this.Controls.Add(this.lblServer);
+            this.Controls.Add(this.cboxServer);
+            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.lblStatus);
+            this.Controls.Add(this.btnChatSend);
+            this.Controls.Add(this.txtChatText);
             this.Controls.Add(this.txtChat);
             this.Controls.Add(this.txtCallsign);
             this.Controls.Add(this.lblCallsign);
@@ -205,5 +279,11 @@
         private System.Windows.Forms.TextBox txtCallsign;
         private System.Windows.Forms.Label lblCallsign;
         private System.Windows.Forms.TextBox txtChat;
+        private System.Windows.Forms.TextBox txtChatText;
+        private System.Windows.Forms.Button btnChatSend;
+        private System.Windows.Forms.Label lblStatus;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cboxServer;
+        private System.Windows.Forms.Label lblServer;
     }
 }
