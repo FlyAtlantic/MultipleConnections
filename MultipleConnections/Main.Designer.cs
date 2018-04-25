@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.ColumnHeader Callsign;
             this.lstClients = new System.Windows.Forms.ListView();
             this.EndPoint = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -35,9 +36,11 @@
             this.LAT = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.LON = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.HDG = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.LastReceivePoint = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ALT = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.GS = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.LastReceivePoint = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Aircraft = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            Callsign = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // lstClients
@@ -46,6 +49,8 @@
             this.EndPoint,
             this.ID,
             this.LastMsg,
+            Callsign,
+            this.Aircraft,
             this.LAT,
             this.LON,
             this.HDG,
@@ -86,11 +91,6 @@
             // 
             this.HDG.Text = "HDG";
             // 
-            // LastReceivePoint
-            // 
-            this.LastReceivePoint.Text = "LastReceivePoint";
-            this.LastReceivePoint.Width = 191;
-            // 
             // ALT
             // 
             this.ALT.Text = "ALT";
@@ -98,6 +98,19 @@
             // GS
             // 
             this.GS.Text = "G/S";
+            // 
+            // LastReceivePoint
+            // 
+            this.LastReceivePoint.Text = "LastReceivePoint";
+            this.LastReceivePoint.Width = 191;
+            // 
+            // Callsign
+            // 
+            Callsign.Text = "Callsign";
+            // 
+            // Aircraft
+            // 
+            this.Aircraft.Text = "Aircraft";
             // 
             // Main
             // 
@@ -123,5 +136,6 @@
         private System.Windows.Forms.ColumnHeader HDG;
         private System.Windows.Forms.ColumnHeader ALT;
         private System.Windows.Forms.ColumnHeader GS;
+        private System.Windows.Forms.ColumnHeader Aircraft;
     }
 }

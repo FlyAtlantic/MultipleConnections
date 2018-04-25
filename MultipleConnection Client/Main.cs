@@ -35,6 +35,7 @@ namespace MultipleConnection_Client
         {
             InitializeComponent();
             sck = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+           
         }
 
         private void btnConnect_Click(object sender, EventArgs e)
@@ -43,6 +44,10 @@ namespace MultipleConnection_Client
             MessageBox.Show("Connected");
             FSUIPCConnection.Open();
             LATandLON.Start();
+
+            btnConnect.Enabled = false;
+            txtCallsign.Enabled = false;
+            txtAircraft.Enabled = false;
         }
 
         private void btnSend_Click(object sender, EventArgs e)
@@ -84,19 +89,38 @@ namespace MultipleConnection_Client
             hdg = FSUIPCGets.GetCurrent().Compass.ToString("0");
             alt = FSUIPCGets.GetCurrent().Altitude.ToString("0");
             gs = FSUIPCGets.GetCurrent().GroundSpeed.ToString("0");
+
             FSUIPCConnection.AITrafficServices.RefreshAITrafficInformation();
             var aiTfc = FSUIPCConnection.AITrafficServices.AllTraffic;
-            Console.WriteLine(aiTfc);
+            Console.WriteLine(aiTfc.ToString());
 
-            string[] data = new string[6];
+            string[] data = new string[8];
             data[0] = txtMsg.Text;
-            data[1] = lat;
-            data[2] = lon;
-            data[3] = hdg;
-            data[4] = alt;
-            data[5] = gs;
+            data[1] = txtCallsign.Text;
+            data[2] = txtAircraft.Text;
+            data[3] = lat;
+            data[4] = lon;
+            data[5] = hdg;
+            data[6] = alt;
+            data[7] = gs;
 
-            int s = sck.Send(Encoding.Default.GetBytes(data[0] + '/' + data[1] + '/' + data[2] + '/' + data[3] + '/' + data[4] + '/' + data[5]));
+            int s = sck.Send(Encoding.Default.GetBytes(data[0] + '/' + data[1] + '/' + data[2] + '/' + data[3] + '/' + data[4] + '/' + data[5] + '/' + data[6] + '/' + data[7]));
+        }
+
+        private void txtCallsign_TextChanged(object sender, EventArgs e)
+        {
+            if (txtCallsign.Text != "" && txtAircraft.Text != "" && txtAircraft.TextLength >= 4)
+            {
+                btnConnect.Enabled = true;
+            }
+        }
+
+        private void txtAircraft_TextChanged(object sender, EventArgs e)
+        {
+            if (txtCallsign.Text != "" && txtAircraft.Text != "" && txtAircraft.TextLength >= 4)
+            {
+                btnConnect.Enabled = true;
+            }
         }
     }
 }
