@@ -17,7 +17,7 @@ namespace MultipleConnections
         public Main()
         {
             InitializeComponent();
-            listener = new Listener(8);
+            listener = new Listener(6702);
             listener.SocketAccepted += new Listener.SocketAcceptedHandler(listener_SocketAccepted);
             Load += new EventHandler(Main_Load);
         }

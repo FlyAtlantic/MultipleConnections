@@ -39,7 +39,7 @@ namespace MultipleConnection_Client
 
         private void btnConnect_Click(object sender, EventArgs e)
         {
-            sck.Connect("127.0.0.1", 8);
+            sck.Connect("95.94.130.22", 6702);
             MessageBox.Show("Connected");
             FSUIPCConnection.Open();
             LATandLON.Start();
@@ -60,19 +60,6 @@ namespace MultipleConnection_Client
             //    MessageBox.Show("Data Sent");
             //}
 
-            LAT = new FsLatitude(FSUIPCGets.GetCurrent().Latitude);
-            LON = new FsLongitude(FSUIPCGets.GetCurrent().Longitude);
-            double fshdg = Convert.ToInt64(hdg);
-            double fsalt = Convert.ToInt64(1000); ;
-            short fsgs = Convert.ToInt16(gs);
-            short fsvs = Convert.ToInt16(0); ;
-            short com1 = Convert.ToInt16(122.80);
-
-
-            FSUIPCConnection.AITrafficServices.AddTCASTarget(5666666, "FlyAtlantic", AITrafficStatus.Enroute, LAT, LON, fsalt, fshdg, fsgs, fsvs, com1);
-            FSUIPCConnection.AITrafficServices.SendTCASTargets();
-
-            FSUIPCConnection.AITrafficServices.RefreshAITrafficInformation(true, true);
    
         }
 
