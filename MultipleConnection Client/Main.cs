@@ -54,7 +54,7 @@ namespace MultipleConnection_Client
                     switch (cboxServer.Text)
                     {
                         case "Beta":
-                            sck.Connect("95.94.130.22", 6702);
+                            sck.Connect("192.168.56.102", 6809);
 
                             FSUIPCConnection.Open();
 
