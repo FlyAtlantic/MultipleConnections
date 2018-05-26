@@ -32,7 +32,7 @@ namespace MultipleConnection_Client
 
         public bool terminate = false;
         public bool terminated = false;
-          
+           
         Socket sck;
 
         public Main()
